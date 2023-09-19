@@ -158,26 +158,26 @@ def train(data_dir='data/memes/',
     print('Initializing variables...')
     params = init_params(options)
     if reload_model:
-        print 'reusing saved model.'
+        print('reusing saved model.')
         load_params(saveto, params)
     tparams = init_tparams(params)
 
     # builds Topo-LSTM model
-    print 'Building model...'
+    print('Building model...')
     model = tprnn_model.build_model(tparams, options)
 
-    print 'Loading test data...'
+    print('Loading test data...')
     test_examples = data_utils.load_examples(data_dir,
                                              dataset='test',
                                              node_index=node_index,
                                              maxlen=maxlen,
                                              G=G)
     test_loader = data_utils.Loader(test_examples, options=options)
-    print 'Loaded %d test examples' % len(test_examples)
+    print('Loaded %d test examples' % len(test_examples))
 
     if train:
         # prepares training data.
-        print 'Loading train data...'
+        print('Loading train data...')
         train_examples = data_utils.load_examples(data_dir,
                                                   dataset='train',
                                                   keep_ratio=options[
@@ -186,7 +186,7 @@ def train(data_dir='data/memes/',
                                                   maxlen=maxlen,
                                                   G=G)
         train_loader = data_utils.Loader(train_examples, options=options)
-        print 'Loaded %d training examples.' % len(train_examples)
+        print('Loaded %d training examples.' % len(train_examples))
 
         # compiles updates.
         optimizer = downhill.build(algo='adam',
@@ -229,7 +229,7 @@ def train(data_dir='data/memes/',
                 cost_history += [cost]
 
                 if global_step % disp_freq == 0:
-                    print 'global step %d, cost: %f' % (global_step, cost)
+                    print('global step %d, cost: %f' % (global_step, cost))
 
                 # dump model parameters.
                 if global_step % save_freq == 0:
@@ -240,9 +240,9 @@ def train(data_dir='data/memes/',
                 # evaluate on test data.
                 if global_step % test_freq == 0:
                     scores = evaluate(model['f_prob'], test_loader)
-                    print 'eval scores: ', scores
+                    print('eval scores: ', scores)
                     end_time = timeit.default_timer()
-                    print 'time used: %d seconds.' % (end_time - start_time)
+                    print('time used: %d seconds.' % (end_time - start_time))
 
                 global_step += 1
 
