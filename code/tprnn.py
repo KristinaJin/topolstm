@@ -250,5 +250,5 @@ def train(data_dir='data/memes/',
     pprint.pprint(scores)
 
 
-if __name__ == '__main__':
-    train(data_dir='data/twitter', dim_proj=512, keep_ratio=1.)
+# if __name__ == '__main__':
+#     train(data_dir='data/twitter', dim_proj=512, keep_ratio=1.)
