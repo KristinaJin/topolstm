@@ -149,13 +149,13 @@ def train(data_dir='data/memes/',
 
     # loads graph
     G, node_index = data_utils.load_graph(data_dir)
-    print nx.info(G)
+    print(nx.info(G))
     options['n_words'] = len(node_index)
 
-    print options
+    print(options)
 
     # creates and initializes shared variables.
-    print 'Initializing variables...'
+    print('Initializing variables...')
     params = init_params(options)
     if reload_model:
         print 'reusing saved model.'
